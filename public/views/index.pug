@@ -8,7 +8,9 @@ html
 		#searchbox_wrapper
 			center
 				input(id="player_searchbox", type="text", placeholder="Player")
+				button(id="search_button" onclick="searchPlayer(document.getElementById('player_searchbox').value, players)" value="Search")
 
 		//- Scripts
 		script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js')
 		script(src='/script/hotkeys.js')
+		script(src='/script/searchPlayer.js')
