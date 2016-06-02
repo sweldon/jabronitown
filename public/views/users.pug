@@ -1,7 +1,7 @@
 html
 	head
 		style
-			include ./style/style.css
+			include ../style/style.css
 	body
 		.container
 			.header MongoDB
@@ -16,4 +16,8 @@ html
 					p Age: 
 						b #{player.age}
 				br
+
+		//- Scripts
+		script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js')
+		script(src='/script/hotkeys.js')
 

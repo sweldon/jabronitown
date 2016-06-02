@@ -5,8 +5,11 @@ var app = express();
 // Define the port to run on
 app.set('port', 8888);
 
-app.set('views', __dirname + '/public/views/templates');
+app.set('views', path.join(__dirname, 'public/views'));
 app.set('view engine', 'pug');
+
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 
 
