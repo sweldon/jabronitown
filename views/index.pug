@@ -1,0 +1,19 @@
+html
+	head
+		style
+			include ./style/style.css
+	body
+		.container
+			.header MongoDB
+			for player in json
+				.block
+					p Name: 
+						b #{player.name}
+					p Rank: 
+						b #{player.rank}
+					p Rating: 
+						b #{player.rating}
+					p Age: 
+						b #{player.age}
+				br
+
