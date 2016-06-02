@@ -53,7 +53,35 @@ body
 	max-height: 800px;
 	overflow-y: scroll;	
 }
+#player_searchbox
+{
+	height:30;
+	width: 500;
+	font-size: 16;
+}
+#search_button
+{
+	margin: -5px 0px -10px 10px;
+	background-color: #333366; 
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: none;
+    font-size: 16px;
+    outline: none;
+    float:right;
+    /*background: linear-gradient(#333399, #333366); /* Standard syntax */*/
+}
+#searchbox_wrapper
+{
 
+	height:30px;
+	background:white;
+	box-shadow: 0px 0px 4px #d0d0d0;
+	padding: 10px;
+}
 
 
 

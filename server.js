@@ -5,10 +5,10 @@ var app = express();
 // Define the port to run on
 app.set('port', 8888);
 
-app.set('views', './views');
+app.set('views', __dirname + '/public/views/templates');
 app.set('view engine', 'pug');
 
-app.use(express.static(path.join(__dirname, 'public')));
+
 
 var mongoose = require('mongoose');
 
@@ -29,13 +29,18 @@ var userSchema = mongoose.Schema({
 
 var User = mongoose.model('User', userSchema);
 
-app.get('/', function (req, res) {
+app.get('/users', function (req, res) {
     User.find({}, function (err, docs) {
         // res.json(docs[0].name);
         // res.render('index', { title: 'Hey', message: 'Hello there!'});
-        res.render('index', { json: docs});
+        res.render('users', { json: docs});
     });
     
+});
+app.get('/', function (req, res) {
+   
+        res.render('index');
+
 });
 
 // Listen for requests
