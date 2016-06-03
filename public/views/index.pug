@@ -3,13 +3,15 @@ html
 		style
 			include ../style/style.css
 	body
+
 		.container
-			.header MongoDB
+			.header JabroniTown
 		#searchbox_wrapper
 			center
-				input(id="player_searchbox", type="text", placeholder="Player")
-				button(id="search_button" onclick="searchPlayer(document.getElementById('player_searchbox').value, players)" value="Search")
-
+				input(id='player_searchbox', type='text', placeholder='Player')
+				button(id='search_button' onclick='searchPlayer('+JSON.stringify(players)+')' value='Search')
+		br
+		#player_results
 		//- Scripts
 		script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js')
 		script(src='/script/hotkeys.js')

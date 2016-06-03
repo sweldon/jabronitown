@@ -44,7 +44,7 @@ app.get('/', function (req, res) {
     User.find({}, function (err, docs) {
         // res.json(docs[0].name);
         // res.render('index', { title: 'Hey', message: 'Hello there!'});
-        res.render('index', { players: docs});
+        res.render('index', { req.players: docs});
     });
 });
 
