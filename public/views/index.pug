@@ -2,17 +2,33 @@ html
 	head
 		style
 			include ../style/style.css
+		script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js')
+		script(src='/script/searchPlayer.js')
+		script(src='/script/hotkeys.js')
 	body
-
 		.container
 			.header JabroniTown
 		#searchbox_wrapper
+
 			center
-				input(id='player_searchbox', type='text', placeholder='Player')
-				button(id='search_button' onclick='searchPlayer('+JSON.stringify(players)+')' value='Search')
+				form(method='get',action='/')
+					input(id='player_searchbox', type='text', placeholder='Player' name='player')
+					//- input(type='submit', id='search_button', onclick='searchPlayer('+JSON.stringify(players)+', player_searchbox.value)' value='Search')
+					input(type='submit', id='search_button', )
 		br
-		#player_results
+
+		if( (results != '') && (typeof(results) != 'undefined'))
+			#player_results
+				for player in results
+					p Name: 
+						b #{player.name}
+					p Rank: 
+						b #{player.rank}
+					p Rating: 
+						b #{player.rating}
+					p Age: 
+						b #{player.age}
+				br
+			script(type='text/javascript').
+				$("#player_results").fadeIn()
 		//- Scripts
-		script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js')
-		script(src='/script/hotkeys.js')
-		script(src='/script/searchPlayer.js')

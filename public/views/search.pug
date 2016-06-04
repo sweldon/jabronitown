@@ -1,0 +1,20 @@
+html
+	head
+		style
+			include ../style/style.css
+	body
+
+		.container
+			.header JabroniTown
+		#searchbox_wrapper
+			center
+				form(method='get',action='/index')
+					input(id='player_searchbox', type='text', placeholder='Player' name='player')
+					input(type='submit', id='search_button')
+		br
+		#player_results
+			name
+		//- Scripts
+		script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js')
+		script(src='/script/hotkeys.js')
+		script(src='/script/searchPlayer.js')
