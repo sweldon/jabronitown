@@ -1,0 +1,8 @@
+db.users.insert(
+{
+	"name" : "strudelb",
+	"rating": 50,
+	"rank": 0,
+	"steam_id": "76561198000768061"
+}
+)

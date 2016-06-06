@@ -1,9 +1,9 @@
 body
 {
 
-    background: linear-gradient(#f6f6f6, #a8a8a8); /* Standard syntax */
+    background: linear-gradient(#282828, #282828); /* Standard syntax 353535 */
 	/*background-color: #f6f6f6;*/
-	font-family: arial;
+	font-family: monospace;
 	margin:auto;
 }
 #close
@@ -25,19 +25,33 @@ body
 .container
 {
 	margin: auto;
-
-
+	width:900px;
 }
 .header
 {
-	margin-top: 25px;
+	height: 180px;
 	margin-left: 10px;
 	font-weight: bold;
-	font-size: 20;
+	font-size: 150;
 	padding: 12px;
-	color: #323232;
+	color: white;
 	text-decoration: none;
 
+	text-align: center;
+	line-height: 180px;
+}
+.subheader
+{
+	font-size: 20px;
+
+	height:20px;
+	line-height: 20px;
+	float:top;
+	margin-top:-25px;
+}
+#ak
+{
+	margin-top:15px;
 }
 
 .block
@@ -45,28 +59,146 @@ body
 	margin-left: 20px;
 	margin-right:20px;
 	padding: 10px;
-	background-color: white;
+	background-color: #3B3B3B;
 	border-radius: 5px;
 	/* box-shadow */
 	box-shadow: 0px 0px 5px #d0d0d0;
-	border-collapse: collapse;
-	max-height: 800px;
-	overflow-y: scroll;	
+
+}
+#summary_wrapper
+{
+/*border:1px solid white;*/
+width: 680px;
+float:right;
 }
 #player_results
 {
-	margin-left: 20px;
-	margin-right:20px;
+	height: 184px;
 	padding: 10px;
-	background-color: white;
-	border-radius: 5px;
+	background-color: #3B3B3B;
+	/*border-radius: 5px;*/
 	/* box-shadow */
-	box-shadow: 0px 0px 5px #d0d0d0;
+	box-shadow: 0px 0px 5px black;
 	border-collapse: collapse;
-	max-height: 800px;
-	/*overflow-y: scroll;	*/
+/*	max-height: 800px;
+	overflow-y: scroll;	*/
 	display:none;
+	color:white;
 }
+#added_results
+{
+
+	height: 184px;
+	line-height:184px;
+	font-size: 80px;
+	padding: 10px;
+	background-color: #3B3B3B;
+	/*border:1px solid white;*/
+	width: 680px;
+	float:right;
+	/*border-radius: 5px;*/
+	/* box-shadow */
+	/*box-shadow: 0px 0px 5px black;*/
+	border-collapse: collapse;
+/*	max-height: 800px;
+	overflow-y: scroll;	*/
+	display:none;
+	color:white;
+}
+#failbox
+{
+	text-align: center;
+	height: 30px;
+	width:200px;
+	line-height: 30px;
+	background-color: #3B3B3B;
+	/*border-radius: 5px;*/
+	/* box-shadow */
+	box-shadow: 0px 0px 2px red;
+	border-collapse: collapse;
+/*	max-height: 800px;
+	overflow-y: scroll;	*/
+	display:none;
+	color:white;
+}
+.avatar
+{
+	width:184px;
+	height:184px;
+	border: 2px solid #53A4C4;
+	float:left;
+/*	border-radius: 10px;*/
+}
+.avatar_ingame
+{
+	width:184px;
+	height:184px;
+	border: 2px solid #82A737;
+	float:left;
+/*	border-radius: 10px;*/
+}
+.avatar_img
+{
+/*	border-radius: 10px;*/
+}
+.player_summary
+{
+	margin-left:10px;
+	/*border: 1px solid white;*/
+	float:left;
+	width:300px;
+	font-size: 16;
+	height: 184px;
+}
+#jabroni_added
+{
+	margin-left:10px;
+	/*border: 1px solid white;*/
+	float:left;
+	width:300px;
+	font-size: 16;
+	height: 184px;
+}
+.rating
+{
+	margin-left:10px;
+	/*border: 1px solid white;*/
+	float:right;
+	width:200px;
+	height: 184px;
+	line-height: 184px;
+	font-size: 120;
+	text-align: center;
+
+}
+.addbutton
+{
+	margin-left:10px;
+	/*border: 1px solid white;*/
+	float:right;
+	width:200px;
+	height: 184px;
+	line-height: 170px;
+	font-size: 120;
+	text-align: center;
+	color: #89B03A;
+	cursor: pointer;
+
+}
+/*.addsuccess
+{
+	margin-left:10px;
+	border: 1px solid white;
+	float:right;
+	width:200px;
+	height: 184px;
+	line-height: 170px;
+	font-size: 120;
+	text-align: center;
+	color: #89B03A;
+	display: none;
+
+}*/
 .sub_result
 {
 	margin-left: 10px;
@@ -96,10 +228,12 @@ body
 {
 
 	height:30px;
-	background:white;
-	box-shadow: 0px 0px 4px #d0d0d0;
+	background:#3B3B3B;
+	box-shadow: 0px 0px 4px black;
 	padding: 10px;
 }
-
+input.placeholder {
+    text-align: center;
+}
 
 

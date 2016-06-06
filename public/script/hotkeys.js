@@ -11,4 +11,14 @@ $("#player_searchbox").keyup(function(event){
 })
 
 
+$( ".addbutton" ).click(function() {
+
+	// $("#card").flip({axis: 'x', front: '#added_results', back: '#player_results'});
+
+  $("#summary_wrapper").fadeOut();
+  $("#added_results").slideDown();
 });
+
+
+});
+

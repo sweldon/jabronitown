@@ -2,33 +2,79 @@ html
 	head
 		style
 			include ../style/style.css
+		title JabroniTown - A CSGO Blacklist
 		script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js')
 		script(src='/script/searchPlayer.js')
 		script(src='/script/hotkeys.js')
+		script(src='https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js')
 	body
-		.container
-			.header JabroniTown
+		
+		.header JABRONI
+			.subheader A CSGO Blacklist
+			//- img(src='/img/ak.png' id="ak")
 		#searchbox_wrapper
 
 			center
 				form(method='get',action='/')
-					input(id='player_searchbox', type='text', placeholder='Player' name='player')
+					input(id='player_searchbox', type='text', placeholder='Find this Jabroni' name='player' autocomplete='off')
 					//- input(type='submit', id='search_button', onclick='searchPlayer('+JSON.stringify(players)+', player_searchbox.value)' value='Search')
 					input(type='submit', id='search_button', )
 		br
+		.container
+			if( (results != '') && (typeof(results) != 'undefined'))
+				if(results.response)
+					if(results.response.message == 'No match')
+						center
+							#failbox
+								p No Match!
+						script(type='text/javascript').
+							$("#failbox").fadeIn()
+					else
+						for player in results
+							#added_results adding...
+							#player_results
+								if(results.response.players[0].gameextrainfo)
+									.avatar_ingame
+										img(class='avatar_img', src=''+player.players[0].avatarfull+'')
+								else
+									.avatar
+											img(class='avatar_img', src=''+player.players[0].avatarfull+'')
+								#summary_wrapper
+									.player_summary
+										p Current Alias: 
+											b #{player.players[0].personaname}
+										p Steam ID: 
+											b #{player.players[0].steamid}
+										p
+											font(color='red') #{player.players[0].personaname} is not a registered Jabroni yet, want to add them? 
+									.addbutton +
+								//- .addsuccess &#10004;
+							br
+						script(type='text/javascript').
+							$("#player_results").fadeIn()
+				else
+					for player in results
+						#player_results
+							if(player.gameextrainfo)
+								.avatar_ingame
+									img(class='avatar_img', src=''+player.avatarfull+'')
+							else
+								.avatar
+									img(class='avatar_img', src=''+player.avatarfull+'')
+							.player_summary
+								p Name: 
+									b #{player.name}
+								p AKA: 
+									b #{player.nickname}
+								p Rank: 
+									b #{player.rank}
+								p Rating: 
+									b #{player.rating}
+								p Steam ID: 
+									b #{player.steam_id}
+							.rating #{player.rating}
+						br
+					script(type='text/javascript').
+						$("#player_results").fadeIn()
 
-		if( (results != '') && (typeof(results) != 'undefined'))
-			#player_results
-				for player in results
-					p Name: 
-						b #{player.name}
-					p Rank: 
-						b #{player.rank}
-					p Rating: 
-						b #{player.rating}
-					p Age: 
-						b #{player.age}
-				br
-			script(type='text/javascript').
-				$("#player_results").fadeIn()
-		//- Scripts
+			//- Scripts

@@ -25,6 +25,12 @@ $( document ).ready(function() {
 		
 	}
 
-	$("#player_results").fadeIn();
+	$(".back").slideDown();
 }
+
+
+// $.getJSON('http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=9E9FA805315870376BABB490E2B92C93&steamids=76561197998181418&gameserverip', function(data) {
+//     console.log(data);
+// });
+
 });
