@@ -40,52 +40,53 @@ app.get('/', function (req, res) {
 
 
     // Resolve input format
-      // if(myname.indexOf('steamcommunity.com/profiles')  > -1)
-      // {
+      if(myname.indexOf('steamcommunity.com/profiles')  > -1)
+      {
 
 
-      // var steam = myname.replace( /^\D+/g, '').replace(/^\/|\/$/g, '');
-      // console.log(steam);
-      // // query("steam_id", steam);
+      var steam = myname.replace( /^\D+/g, '').replace(/^\/|\/$/g, '');
+      console.log(steam);
+      // query("steam_id", steam);
 
-      // User.find({steam_id: steam}, function (err, docs2) { 
-      // docs = docs2;
-      // });
+      User.find({steam_id: steam}, function (err, docs) {
+          // res.json(docs[0].name);
+          // res.render('index', { title: 'Hey', message: 'Hello there!'});
+          query(docs, "steam", myname);
+      });
 
-
-      // }
-      // else if(myname.indexOf('steamcommunity.com/id')  > -1)
-      // {
-      // var trimmed = myname.replace(/^\/|\/$/g, '');
-      // var chunked = trimmed.split('/');
-      // var id = chunked[chunked.length -1];
-      // console.log(id)
+      }
+      else if(myname.indexOf('steamcommunity.com/id')  > -1)
+      {
+      var trimmed = myname.replace(/^\/|\/$/g, '');
+      var chunked = trimmed.split('/');
+      var id = chunked[chunked.length -1];
+      console.log("GOOD STUFF"+id)
       // name = id;
       // console.log("by id")
-      // User.find({name: id}, function (err, docs2) { 
-      // docs = docs2;
+  
+          User.find({name: id}, function (err, docs) {
+        // res.json(docs[0].name);
+        // res.render('index', { title: 'Hey', message: 'Hello there!'});
+        query(docs, "name", id);
+           });
 
-      // });
+      // query("name", name);
 
-      // // query("name", name);
-
-      // }
-      // else
-      // {
-      // console.log("by original input")
-      // User.find({name: myname}, function (err, docs2) { 
-      // docs = docs2;
-      // });
-
-      // // query("name", myname);
-      // }
+      }
+      else
+      {
+    User.find({name: myname}, function (err, docs) {
+        // res.json(docs[0].name);
+        // res.render('index', { title: 'Hey', message: 'Hello there!'});
+        query(docs, "id", myname);
+    });
+      }
 
     // Resolve input format
 
     // myname = myname.replace(/ /g,"");
-    User.find({name: myname}, function (err, docs) {
-        // res.json(docs[0].name);
-        // res.render('index', { title: 'Hey', message: 'Hello there!'});
+
+    function query(docs, type, input){
         if(docs.length > 0)
         {
           //get avatar & nickname
@@ -111,7 +112,50 @@ app.get('/', function (req, res) {
         else
         {
 
-          var steamID = "http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=9E9FA805315870376BABB490E2B92C93&vanityurl="+myname
+          if(type == 'steam')
+          {
+
+                      User.find({steam_id: input}, function (err, docs2) { 
+
+                        if(docs2.length > 0)
+                        {
+                          var profInfo = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=9E9FA805315870376BABB490E2B92C93&steamids="+input
+                            request({
+                            url: profInfo,
+                            json: true
+                            }, function (error, response, body2) {
+
+                            var avatar = body2["response"]["players"][0]["avatarfull"];
+                            var nickname = body2["response"]["players"][0]["personaname"];
+                            docs2[0]["nickname"] = nickname;
+                            docs2[0]["avatarfull"] = avatar;
+                            res.render('index', {results : docs2});
+                            })
+
+                        }
+                        else
+                        {
+                            var profInfo = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=9E9FA805315870376BABB490E2B92C93&steamids="+input
+                            request({
+                            url: profInfo,
+                            json: true
+                            }, function (error, response, body) {
+
+                            // console.log(body);
+                            res.render('index', {results : body});
+                            })
+                            // res.render('index', {results : profInfo});
+                        }
+
+                       });
+
+
+
+
+          }
+          else {
+          var steamID = "http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=9E9FA805315870376BABB490E2B92C93&vanityurl="+input
+            console.log(steamID)
             request({
                 url: steamID,
                 json: true
@@ -172,13 +216,24 @@ app.get('/', function (req, res) {
           //http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=9E9FA805315870376BABB490E2B92C93&vanityurl=stmyd
           // use steam id for all usr info
           // http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=9E9FA805315870376BABB490E2B92C93&steamids=
-
         }
-    });
+        }
+    }
    }
    else
    {
-    res.render('index');
+      var profInfo = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=9E9FA805315870376BABB490E2B92C93&steamids=76561198002041609"
+        request({
+        url: profInfo,
+        json: true
+        }, function (error, response, body) {
+
+        // console.log(body);
+        res.render('index', {resultsa : body});
+        })
+
+    // res.render('index');
+    // res.render('index', {results : body});
    }
         
 });

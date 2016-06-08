@@ -9,8 +9,7 @@ body
 #close
 {
    position:absolute;
-   top:0;
-   right:0;
+   float:right;
    padding:10px;
    font-weight: bold;
    color:#3383BB;
@@ -85,6 +84,38 @@ float:right;
 	display:none;
 	color:white;
 }
+#home
+{
+	height: 400px;
+	padding: 10px;
+	background-color: #3B3B3B;
+	/*border-radius: 5px;*/
+	/* box-shadow */
+/*	max-height: 800px;
+	overflow-y: scroll;	*/
+	color:white;
+	box-shadow: 0px 0px 5px black;
+}
+.div_header
+{
+	/*border:1px solid white;*/
+	width: 200px;
+	font-size: 18;
+}
+#jabroni_list_left
+{
+	width:435px;
+	float:left;
+	height: 335px;
+	border:1px solid white;
+}
+#jabroni_list_right
+{
+	width:435px;
+	height: 335px;
+	float:right;
+	border:1px solid white;
+}
 #added_results
 {
 
@@ -150,6 +181,34 @@ float:right;
 	font-size: 16;
 	height: 184px;
 }
+.mini_player_summary
+{
+
+	border: 1px solid white;
+
+	width:auto;
+	font-size: 16;
+	height: 65px;
+}
+.mini_avatar
+{
+	width:61;
+	height:61;
+	border: 2px solid #53A4C4;
+	float:left;
+}
+.mini_rating
+{
+
+	border: 1px solid white;
+	float:right;
+	width:200px;
+	height: 184px;
+	line-height: 184px;
+	font-size: 120;
+	text-align: center;
+
+}
 #jabroni_added
 {
 	margin-left:10px;
@@ -208,6 +267,7 @@ float:right;
 	height:30;
 	width: 500;
 	font-size: 16;
+	text-align: center;
 }
 #search_button
 {

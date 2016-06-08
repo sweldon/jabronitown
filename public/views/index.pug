@@ -16,7 +16,7 @@ html
 
 			center
 				form(method='get',action='/')
-					input(id='player_searchbox', type='text', placeholder='Find this Jabroni' name='player' autocomplete='off')
+					input(id='player_searchbox', type='text', placeholder='Name / Profile Link' name='player' autocomplete='off')
 					//- input(type='submit', id='search_button', onclick='searchPlayer('+JSON.stringify(players)+', player_searchbox.value)' value='Search')
 					input(type='submit', id='search_button', )
 		br
@@ -73,8 +73,42 @@ html
 								p Steam ID: 
 									b #{player.steam_id}
 							.rating #{player.rating}
+							//- #close X
 						br
 					script(type='text/javascript').
 						$("#player_results").fadeIn()
-
+				#home  List Jabroni things...
+			else
+				#home
+					.div_header The Jabronos
+					#jabroni_list_left
+						//- for player in resultsa
+						//- 	.mini_player_summary
+						//- 	if(resultsa.response.players[0].gameextrainfo)
+						//- 		.mini_avatar
+						//- 			img(class='avatar_img', src=''+player.players[0].avatarmedium+'')
+						//- 	else
+						//- 		.avatar
+						//- 				img(class='avatar_img', src=''+player.players[0].avatarmedium+'')
+						.mini_player_summary test
+							.mini_avatar
+						.mini_player_summary test
+							.mini_avatar
+						.mini_player_summary test
+							.mini_avatar
+						.mini_player_summary test
+							.mini_avatar
+						.mini_player_summary test
+							.mini_avatar
+					#jabroni_list_right
+						.mini_player_summary test
+							.mini_avatar
+						.mini_player_summary test
+							.mini_avatar
+						.mini_player_summary test
+							.mini_avatar
+						.mini_player_summary test
+							.mini_avatar
+						.mini_player_summary test
+							.mini_avatar
 			//- Scripts
