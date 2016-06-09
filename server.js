@@ -2,7 +2,7 @@
 var express = require('express');
 var path = require('path');
 var app = express();
-    app.set('port', 8888);
+    app.set('port', 5000);
     app.set('views', path.join(__dirname, 'public/views'));
     app.set('view engine', 'pug');
     app.use(express.static(path.join(__dirname, 'public')));
@@ -13,7 +13,7 @@ var mongoose = require('mongoose');
 var request = require("request")
 
 // Connect to db
-mongoose.connect('mongodb://localhost:27017/blacklist', function (error) {
+mongoose.connect('mongodb://heroku_xc6qf81p:heroku_xc6qf81p@ds011734.mlab.com:11734/heroku_xc6qf81p', function (error) {
     if (error) {
         console.log(error);
     }
