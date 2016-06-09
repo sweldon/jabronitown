@@ -13,7 +13,7 @@ var mongoose = require('mongoose');
 var request = require("request")
 
 // Connect to db
-mongoose.connect('mongodb://heroku_xc6qf81p:woodcreek0704p@ds011734.mlab.com:11734/heroku_xc6qf81p', function (error) {
+mongoose.connect('mongodb://admin:adminpass@ds011734.mlab.com:11734/heroku_xc6qf81p', function (error) {
     if (error) {
         console.log(error);
     }
