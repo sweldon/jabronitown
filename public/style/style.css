@@ -3,7 +3,7 @@ body
 
     background: linear-gradient(#282828, #282828); /* Standard syntax 353535 */
 	/*background-color: #f6f6f6;*/
-	font-family: monospace;
+	font-family: arial;
 	margin:auto;
 }
 #close
@@ -84,9 +84,22 @@ float:right;
 	display:none;
 	color:white;
 }
+#player_results2
+{
+	height: 184px;
+	padding: 10px;
+	background-color: #3B3B3B;
+	/*border-radius: 5px;*/
+	/* box-shadow */
+	box-shadow: 0px 0px 5px black;
+	border-collapse: collapse;
+/*	max-height: 800px;
+	overflow-y: scroll;	*/
+	color:white;
+}
 #home
 {
-	height: 400px;
+	height: 255px;
 	padding: 10px;
 	background-color: #3B3B3B;
 	/*border-radius: 5px;*/
@@ -95,26 +108,33 @@ float:right;
 	overflow-y: scroll;	*/
 	color:white;
 	box-shadow: 0px 0px 5px black;
+	width:900px;
 }
 .div_header
 {
 	/*border:1px solid white;*/
-	width: 200px;
+	width: 400px;
 	font-size: 18;
 }
 #jabroni_list_left
 {
+	padding:5px;
 	width:435px;
 	float:left;
-	height: 335px;
-	border:1px solid white;
+	height: 220px;
+	/*border:1px solid white;*/
 }
 #jabroni_list_right
 {
+	padding:5px;
 	width:435px;
-	height: 335px;
+	height: 220px;
 	float:right;
-	border:1px solid white;
+	/*border:1px solid white;*/
+}
+#add_form_wrapper
+{
+	display: none;
 }
 #added_results
 {
@@ -184,29 +204,56 @@ float:right;
 .mini_player_summary
 {
 
-	border: 1px solid white;
+	/*border: 1px solid white;*/
 
 	width:auto;
-	font-size: 16;
-	height: 65px;
+	font-size: 18;
+	height: 75px;
+	line-height: 75px;
+
+}
+.mini_player_info
+{
+
+	/*border: 1px solid white;*/
+	float:left;
+	width:285px;
+	height: 75px;
+	font-style: italic;
+	margin-left: 7px;
+	line-height:68px;
+	font-size:75;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: hidden; 
+    overflow-y: hidden;
+    opacity:.5;
+
+-webkit-mask-image: -webkit-gradient(linear, left top, right bottom, 
+    from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+
+
 }
 .mini_avatar
 {
-	width:61;
-	height:61;
-	border: 2px solid #53A4C4;
+	width:64px;
+	height:64px;
+	border: 2px solid #FF6A6A;
 	float:left;
 }
+
 .mini_rating
 {
 
-	border: 1px solid white;
+	/*border: 1px solid white;*/
 	float:right;
-	width:200px;
-	height: 184px;
-	line-height: 184px;
-	font-size: 120;
+	width:68px;
+	height: 68px;
+	line-height: 75px;
+	font-size: 45;
 	text-align: center;
+	font-family: monospace;
+	/*color: #53A4C4;*/
 
 }
 #jabroni_added
@@ -230,7 +277,7 @@ float:right;
 	text-align: center;
 
 }
-.addbutton
+#addbutton
 {
 	margin-left:10px;
 	/*border: 1px solid white;*/
@@ -244,10 +291,10 @@ float:right;
 	cursor: pointer;
 
 }
-/*.addsuccess
+#addsuccess
 {
 	margin-left:10px;
-	border: 1px solid white;
+	/*border: 1px solid white;*/
 	float:right;
 	width:200px;
 	height: 184px;
@@ -255,9 +302,9 @@ float:right;
 	font-size: 120;
 	text-align: center;
 	color: #89B03A;
-	display: none;
 
-}*/
+
+}
 .sub_result
 {
 	margin-left: 10px;
@@ -291,9 +338,56 @@ float:right;
 	background:#3B3B3B;
 	box-shadow: 0px 0px 4px black;
 	padding: 10px;
+	width:auto;
+}
+#certified
+{
+	font-size: 50;
+	/*border: 1px solid white;*/
+	text-align: center;
+	width:500px;
+
+	/*line-height: 185px;*/
+}
+#title-top
+{
+	text-align: center;
+	/*border: 1px solid white;*/
+	height: 50px;
+	font-size: 20;
+	width:500px;
+	line-height: 65px;
+}
+#title-bot
+{
+	text-align: center;
+	/*border: 1px solid white;*/
+	height: 50px;
+	font-size: 20;
+	width:500px;
+	line-height: 40px;
+}
+#tracklink
+{
+	text-decoration: none;
+	color:#53A4C4;
+}
+#headerlink
+{
+	text-decoration: none;
+	color:white;
+}
+#tracklink:visited
+{
+	text-decoration: none;
+	color:#53A4C4;
 }
 input.placeholder {
     text-align: center;
+}
+#steamid_box
+{
+	display: none;
 }
 
 

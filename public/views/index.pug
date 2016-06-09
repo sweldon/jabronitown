@@ -9,7 +9,8 @@ html
 		script(src='https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js')
 	body
 		
-		.header JABRONI
+		.header 
+			a(href='/' id='headerlink') JABRONI
 			.subheader A CSGO Blacklist
 			//- img(src='/img/ak.png' id="ak")
 		#searchbox_wrapper
@@ -18,7 +19,7 @@ html
 				form(method='get',action='/')
 					input(id='player_searchbox', type='text', placeholder='Name / Profile Link' name='player' autocomplete='off')
 					//- input(type='submit', id='search_button', onclick='searchPlayer('+JSON.stringify(players)+', player_searchbox.value)' value='Search')
-					input(type='submit', id='search_button', )
+					input(type='submit', id='search_button')
 		br
 		.container
 			if( (results != '') && (typeof(results) != 'undefined'))
@@ -31,23 +32,29 @@ html
 							$("#failbox").fadeIn()
 					else
 						for player in results
+							#add_form_wrapper
+								form(method='get',action='/' id='add_form')
+									input(type='hidden', name='add_player' value=player.players[0].steamid)
 							#added_results adding...
 							#player_results
 								if(results.response.players[0].gameextrainfo)
 									.avatar_ingame
-										img(class='avatar_img', src=''+player.players[0].avatarfull+'')
+										a(href='http://steamcommunity.com/profiles/'+player.players[0].steamid)
+											img(class='avatar_img', src=''+player.players[0].avatarfull+'')
 								else
 									.avatar
+										a(href='http://steamcommunity.com/profiles/'+player.players[0].steamid)
 											img(class='avatar_img', src=''+player.players[0].avatarfull+'')
 								#summary_wrapper
 									.player_summary
 										p Current Alias: 
 											b #{player.players[0].personaname}
 										p Steam ID: 
-											b #{player.players[0].steamid}
+											#steamid_box
+												b #{player.players[0].steamid}
 										p
 											font(color='red') #{player.players[0].personaname} is not a registered Jabroni yet, want to add them? 
-									.addbutton +
+									#addbutton +
 								//- .addsuccess &#10004;
 							br
 						script(type='text/javascript').
@@ -57,10 +64,12 @@ html
 						#player_results
 							if(player.gameextrainfo)
 								.avatar_ingame
-									img(class='avatar_img', src=''+player.avatarfull+'')
+									a(href='http://steamcommunity.com/profiles/'+player.steam_id)
+										img(class='avatar_img', src=''+player.avatarfull+'')
 							else
 								.avatar
-									img(class='avatar_img', src=''+player.avatarfull+'')
+									a(href='http://steamcommunity.com/profiles/'+player.steam_id)
+										img(class='avatar_img', src=''+player.avatarfull+'')
 							.player_summary
 								p Name: 
 									b #{player.name}
@@ -77,38 +86,50 @@ html
 						br
 					script(type='text/javascript').
 						$("#player_results").fadeIn()
-				#home  List Jabroni things...
+				// #home  List Jabroni things...
+			else if( (add_results != '') && (typeof(add_results) != 'undefined'))
+				for player in add_results
+					#player_results2
+						if(add_results.response.players[0].gameextrainfo)
+							.avatar_ingame
+								img(class='avatar_img', src=''+player.players[0].avatarfull+'')
+						else
+							.avatar
+									img(class='avatar_img', src=''+player.players[0].avatarfull+'')
+						#summary_wrapper
+							.player_summary
+								//- h1 #{player.players[0].personaname}
+								#title-top #{player.players[0].personaname} is now a
+								#certified Certified Jabroni
+								#title-bot
+									a(id='tracklink', href='/?player='+player.players[0].personaname) They're now being tracked in our database&raquo
+								#steamid_box
+									b #{player.players[0].steamid}
+							//- #addbutton +
+							#addsuccess &#10004;
+					br
+				//- #home  List Jabroni things...
+
 			else
 				#home
-					.div_header The Jabronos
+					.div_header Recently Certified Jabronies
 					#jabroni_list_left
-						//- for player in resultsa
-						//- 	.mini_player_summary
-						//- 	if(resultsa.response.players[0].gameextrainfo)
-						//- 		.mini_avatar
-						//- 			img(class='avatar_img', src=''+player.players[0].avatarmedium+'')
-						//- 	else
-						//- 		.avatar
-						//- 				img(class='avatar_img', src=''+player.players[0].avatarmedium+'')
-						.mini_player_summary test
-							.mini_avatar
-						.mini_player_summary test
-							.mini_avatar
-						.mini_player_summary test
-							.mini_avatar
-						.mini_player_summary test
-							.mini_avatar
-						.mini_player_summary test
-							.mini_avatar
+						each val, index in recentJabronies
+							if(index < 3)
+								.mini_player_summary
+									.mini_avatar
+										a(href='/?player='+val.name)
+											img(class='avatar_img', src=''+val.avatarmedium)
+									.mini_player_info=val.name
+									.mini_rating #{val.rating}
 					#jabroni_list_right
-						.mini_player_summary test
-							.mini_avatar
-						.mini_player_summary test
-							.mini_avatar
-						.mini_player_summary test
-							.mini_avatar
-						.mini_player_summary test
-							.mini_avatar
-						.mini_player_summary test
-							.mini_avatar
-			//- Scripts
+						each val, index in recentJabronies
+							if(index > 2)
+								.mini_player_summary
+									.mini_avatar
+										a(href='/?player='+val.name)
+											img(class='avatar_img', src=''+val.avatarmedium)
+									.mini_player_info=val.name
+									.mini_rating #{val.rating}
+
+

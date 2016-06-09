@@ -27,13 +27,16 @@ var userSchema = mongoose.Schema({
     age: Number,
     rating: Number,
     rank: String,
-    steam_id: String
+    steam_id: String,
+    avatarfull: String,
+    avatarmedium: String
 });
 
 var User = mongoose.model('User', userSchema);
 
 app.get('/', function (req, res) {
    var myname = req.param('player');
+   var add_player = req.param('add_player')
    // if (typeof myname !== 'undefined') {console.log(myname)};
    if((myname != '') && (typeof myname !== 'undefined'))
    {
@@ -220,17 +223,78 @@ app.get('/', function (req, res) {
         }
     }
    }
+   else if((add_player != '') && (typeof add_player !== 'undefined'))
+   {
+    var profInfo = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=9E9FA805315870376BABB490E2B92C93&steamids="+add_player
+    request({
+    url: profInfo,
+    json: true
+    }, function (error, response, body2) {
+
+    var avatar_medium = body2["response"]["players"][0]["avatarmedium"];
+    var avatar_full = body2["response"]["players"][0]["avatarfull"];
+    var nickname = body2["response"]["players"][0]["personaname"];
+
+  User.find({steam_id: add_player}, function (err, docs2) {
+
+    if(docs2.length == 0)
+    {
+    var newUser = new User({
+
+    name: nickname,
+    rating: 25,
+    rank:"Typical",
+    steam_id: add_player,
+    avatarfull: avatar_full,
+    avatarmedium: avatar_medium
+
+    })
+
+    newUser.save(function(er, data) {
+
+    console.log("Saved: ", data);
+
+    });
+    console.log(body2);
+    res.render('index', {add_results : body2});
+
+    }
+    else
+    {
+      console.log("Already added, doing nothing.")
+      // res.render('index');
+      res.render('index', {add_results : body2});
+    }
+
+   });
+
+
+    })
+   }
    else
    {
-      var profInfo = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=9E9FA805315870376BABB490E2B92C93&steamids=76561198002041609"
-        request({
-        url: profInfo,
-        json: true
-        }, function (error, response, body) {
 
-        // console.log(body);
-        res.render('index', {resultsa : body});
-        })
+  var sort = {'_id': -1}
+// collection.find({}, limit=10).sort(sort)
+
+
+    User.find({}, function (err, docs) {
+        // res.json(docs[0].name);
+        // res.render('index', { title: 'Hey', message: 'Hello there!'});
+         console.log(docs);
+        res.render('index', { recentJabronies: docs});
+    }).sort(sort).limit(6);
+
+   
+      // var profInfo = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=9E9FA805315870376BABB490E2B92C93&steamids=76561198002041609"
+      //   request({
+      //   url: profInfo,
+      //   json: true
+      //   }, function (error, response, body) {
+
+      //   // console.log(body);
+      //   res.render('index', {resultsa : body});
+      //   })
 
     // res.render('index');
     // res.render('index', {results : body});
