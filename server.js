@@ -277,13 +277,36 @@ app.get('/', function (req, res) {
   var sort = {'_id': -1}
 // collection.find({}, limit=10).sort(sort)
 
-
-    User.find({}, function (err, docs) {
+var online = []
+    User.find({}, function (err, docs2) {
         // res.json(docs[0].name);
         // res.render('index', { title: 'Hey', message: 'Hello there!'});
-         console.log(docs);
-        res.render('index', { recentJabronies: docs});
+        
+        // for(var i=0;i<docs2.length;i++)
+        // {
+        //   var id = docs2[i].steam_id
+
+        //   var profInfo = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=9E9FA805315870376BABB490E2B92C93&steamids="+id
+ 
+        //   request({
+        //   url: profInfo,
+        //   json: true
+        //   }, function (error, response, body) {
+        //     console.log(docs2[i].name)
+        //     if(body["response"]["players"][0]["gameextrainfo"])
+        //     {
+             
+        //       // body["response"]["players"][0]["personaname"])
+
+        //     }
+        //   })
+        // }
+
+
+
+        res.render('index', { recentJabronies: docs2});
     }).sort(sort).limit(6);
+
 
    
       // var profInfo = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=9E9FA805315870376BABB490E2B92C93&steamids=76561198002041609"
