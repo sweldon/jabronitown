@@ -284,34 +284,52 @@ app.get('/', function (req, res) {
   var sort = {'_id': -1}
 // collection.find({}, limit=10).sort(sort)
 
-var online = []
+
+
     User.find({}, function (err, docs2) {
-        // res.json(docs[0].name);
-        // res.render('index', { title: 'Hey', message: 'Hello there!'});
+
+        var ingame = [];
+        completed_request = 0;
+         for(var j=0;j<docs2.length;j++)
+        {
+          
+     
+          request({
+          url: "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=9E9FA805315870376BABB490E2B92C93&steamids="+docs2[j].steam_id,
+          json: true
+          }, function (error, response, body) {
+
+
+            if(body["response"]["players"][0]["gameextrainfo"])
+            {
+              ingame.push(body["response"]["players"][0]["personaname"]);
+            }
+
+            completed_request++;
+            
+            if (completed_request == docs2.length) {
+               res.render('index', { recentJabronies: docs2 , ingameList: ingame});
+            }
+              // ingame.push(body["response"]["players"][0]["personaname"])
+
+              // console.log(ingame);
+            
+          })
+
+
+          
+          }
+         
         
-        // for(var i=0;i<docs2.length;i++)
-        // {
-        //   var id = docs2[i].steam_id
+        // console.log(online)
+          // console.log(id)
 
-        //   var profInfo = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=9E9FA805315870376BABB490E2B92C93&steamids="+id
- 
-        //   request({
-        //   url: profInfo,
-        //   json: true
-        //   }, function (error, response, body) {
-        //     console.log(docs2[i].name)
-        //     if(body["response"]["players"][0]["gameextrainfo"])
-        //     {
-             
-        //       // body["response"]["players"][0]["personaname"])
 
-        //     }
-        //   })
-        // }
+        
 
 
 
-        res.render('index', { recentJabronies: docs2});
+        
     }).sort(sort).limit(6);
 
 

@@ -118,7 +118,7 @@ html
 						each val, index in recentJabronies
 							if(index < 3)
 								.mini_player_summary
-									if(val.gameextrainfo)
+									if(ingameList.indexOf(val.name) > -1)
 										.mini_avatar_ingame
 											a(href='/?player='+val.name)
 												img(class='avatar_img', src=''+val.avatarmedium)
@@ -132,8 +132,13 @@ html
 						each val, index in recentJabronies
 							if(index > 2)
 								.mini_player_summary
-									.mini_avatar
-										a(href='/?player='+val.name)
-											img(class='avatar_img', src=''+val.avatarmedium)
+									if(ingameList.indexOf(val.name) > -1)
+										.mini_avatar_ingame
+											a(href='/?player='+val.name)
+												img(class='avatar_img', src=''+val.avatarmedium)
+									else
+										.mini_avatar
+											a(href='/?player='+val.name)
+												img(class='avatar_img', src=''+val.avatarmedium)
 									.mini_player_info=val.name
 									.mini_rating #{val.rating}
