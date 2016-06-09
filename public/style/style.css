@@ -99,7 +99,7 @@ float:right;
 }
 #home
 {
-	height: 255px;
+	height: 295px;
 	padding: 10px;
 	background-color: #3B3B3B;
 	/*border-radius: 5px;*/
@@ -118,6 +118,7 @@ float:right;
 }
 #jabroni_list_left
 {
+	margin-top: 20px;
 	padding:5px;
 	width:435px;
 	float:left;
@@ -126,6 +127,7 @@ float:right;
 }
 #jabroni_list_right
 {
+	margin-top: 20px;
 	padding:5px;
 	width:435px;
 	height: 220px;
@@ -391,3 +393,39 @@ input.placeholder {
 }
 
 
+
+
+
+
+#home h3 {
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    width: 255px;
+    margin: 0;
+    padding: 5px 10px;
+    position: relative;
+    left: -19px;
+    top: 8px;
+    color: white;
+    border-top: 1px solid #363636;
+    border-bottom: 1px solid #202020;
+    background: #53A4C4;
+    background: linear-gradient(top, #383838 0%, #262626 100%);
+    border-radius: 2px 2px 0 0;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+#home h3::before,
+#home h3::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    bottom: -11px;
+    z-index: -10;
+    border: 5px solid;
+    border-color: #242424 transparent transparent transparent;    
+}
+#home h3::before {left: 0;}
+#home h3::after {right: 0;}
