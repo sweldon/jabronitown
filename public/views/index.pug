@@ -126,7 +126,8 @@ html
 										.mini_avatar
 											a(href='/?player='+val.name)
 												img(class='avatar_img', src=''+val.avatarmedium)
-									.mini_player_info=val.name
+									a(id='homelink' href='/?player='+val.name)
+										.mini_player_info=val.name
 									.mini_rating #{val.rating}
 					#jabroni_list_right
 						each val, index in recentJabronies
@@ -140,5 +141,6 @@ html
 										.mini_avatar
 											a(href='/?player='+val.name)
 												img(class='avatar_img', src=''+val.avatarmedium)
-									.mini_player_info=val.name
+									a(id='homelink' href='/?player='+val.name)
+										.mini_player_info=val.name
 									.mini_rating #{val.rating}

@@ -22,6 +22,16 @@ body
    line-height: 10px; 
 
 }
+#homelink
+{
+	text-decoration: none;
+	color:white;
+}
+#homelink:visited
+{
+	text-decoration: none;
+	color:white;
+}
 .container
 {
 	margin: auto;
