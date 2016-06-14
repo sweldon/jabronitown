@@ -44,6 +44,7 @@ var User = mongoose.model('User', userSchema);
 app.get('/', function (req, res) {
    var myname = req.param('player');
    var add_player = req.param('add_player')
+   var upvote = req.param('upvote')
    // if (typeof myname !== 'undefined') {console.log(myname)};
    if((myname != '') && (typeof myname !== 'undefined'))
    {
@@ -277,6 +278,24 @@ app.get('/', function (req, res) {
 
 
     })
+   }
+   else if((upvote != '') && (typeof upvote !== 'undefined'))
+   {
+    User.find({steam_id: upvote}, function (err, docs) { 
+
+    if(docs.length > 0)
+    {
+      console.log(docs[0])
+      var updatedRating = docs[0]["rating"] + 1
+      User.update({steam_id: upvote},{rating: updatedRating}, function(err,affected) {
+      console.log('affected rows %d', affected);
+    });
+
+      res.render('index', {results : docs});
+
+    }
+    });
+
    }
    else
    {

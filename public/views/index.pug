@@ -81,11 +81,16 @@ html
 									b #{player.rating}
 								p Steam ID: 
 									b #{player.steam_id}
+							form(method='get',action='/' id='upvote_form')
+								input(type='hidden', name='upvote' value=player.steam_id)
+							.votebox +
+							.confirmbox &#10004;
 							.rating #{player.rating}
+
 							//- #close X
 						br
 					script(type='text/javascript').
-						$("#player_results").fadeIn()
+						$("#player_results").show()
 				// #home  List Jabroni things...
 			else if( (add_results != '') && (typeof(add_results) != 'undefined'))
 				for player in add_results
@@ -109,7 +114,32 @@ html
 							#addsuccess &#10004;
 					br
 				//- #home  List Jabroni things...
-
+			//- else if( (upvote_results != '') && (typeof(upvote_results) != 'undefined'))
+			//- 	for player in upvote_results
+			//- 		#player_results
+			//- 			if(player.gameextrainfo)
+			//- 				.avatar_ingame
+			//- 					a(href='http://steamcommunity.com/profiles/'+player.steam_id)
+			//- 						img(class='avatar_img', src=''+player.avatarfull+'')
+			//- 			else
+			//- 				.avatar
+			//- 					a(href='http://steamcommunity.com/profiles/'+player.steam_id)
+			//- 						img(class='avatar_img', src=''+player.avatarfull+'')
+			//- 			.player_summary
+			//- 				p Name: 
+			//- 					b #{player.name}
+			//- 				p AKA: 
+			//- 					b #{player.nickname}
+			//- 				p Rank: 
+			//- 					b #{player.rank}
+			//- 				p Rating: 
+			//- 					b #{player.rating}
+			//- 				p Steam ID: 
+			//- 					b #{player.steam_id}
+			//- 			form(method='get',action='/' id='upvote_form')
+			//- 				input(type='hidden', name='upvote' value=player.steam_id)
+			//- 			.votebox &#10004;
+			//- 			.rating #{player.rating}
 			else
 				#home
 					.ribbon

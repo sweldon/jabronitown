@@ -27,6 +27,13 @@ $("#summary_wrapper").fadeOut(function() {
 
 });
 
+$( ".votebox" ).click(function() {
+
+ $("#upvote_form").submit();
+
+
+});
+
 
 });
 
