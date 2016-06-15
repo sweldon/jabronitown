@@ -424,7 +424,7 @@ app.get('/', function (req, res) {
     var newUser = new User({
 
     name: nickname,
-    rating: 25,
+    rating: 1,
     rank:"Typical",
     steam_id: add_player,
     avatarfull: avatar_full,
@@ -437,6 +437,36 @@ app.get('/', function (req, res) {
     console.log("Saved: ", data);
 
     });
+
+    var voterIp = req.header('x-forwarded-for') || req.connection.remoteAddress;
+    Voter.find({ip: voterIp}, function (err, docs) { 
+
+    if(docs.length > 0)
+    {
+      var votesList = docs[0].votes;
+      votesList.push(add_player);
+      Voter.update({ip: voterIp},{votes: votesList}, function(err,affected) { });
+
+    }
+    else
+    {
+        var newVoter = new Voter({
+
+        ip: voterIp,
+        votes: [add_player]
+
+        })
+
+        newVoter.save(function(er, data) {
+
+        console.log("Voter Saved: ", data);
+
+        });
+
+    }
+
+  })
+
     console.log(body2);
     res.render('index', {add_results : body2});
 
