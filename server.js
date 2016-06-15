@@ -14,17 +14,17 @@ var mongoose = require('mongoose');
 var request = require("request")
 
 // Connect to db
-// mongoose.connect('mongodb://admin:adminpass@ds011734.mlab.com:11734/heroku_xc6qf81p', function (error) {
-//     if (error) {
-//         console.log(error);
-//     }
-//     });
-
-mongoose.connect('mongodb://localhost:27017/blacklist', function (error) {
+mongoose.connect('mongodb://admin:adminpass@ds011734.mlab.com:11734/heroku_xc6qf81p', function (error) {
     if (error) {
         console.log(error);
     }
     });
+
+// mongoose.connect('mongodb://localhost:27017/blacklist', function (error) {
+//     if (error) {
+//         console.log(error);
+//     }
+//     });
 
 
 
@@ -40,6 +40,17 @@ var userSchema = mongoose.Schema({
 });
 
 var User = mongoose.model('User', userSchema);
+
+
+var voterSchema = mongoose.Schema({
+    ip: String,
+    votes: []
+});
+
+var Voter = mongoose.model('Voter', voterSchema);
+
+
+
 
 app.get('/', function (req, res) {
    var myname = req.param('player');
@@ -115,7 +126,40 @@ app.get('/', function (req, res) {
             }
           docs[0]["nickname"] = nickname;
           docs[0]["avatarfull"] = avatar;
-          res.render('index', {results : docs});
+
+
+
+          var voterIp = req.header('x-forwarded-for') || req.connection.remoteAddress;
+
+
+          Voter.find({ip: voterIp}, function (err, docs2) { 
+
+          if(docs2.length > 0)
+          {
+          //WAIT CHECK FIRST IF IP IS IN THE LIST. IF IT IS DO NOTHING IF IT ISNT, UPDATE RATING
+
+          votesList = docs2[0].votes
+
+          if(votesList.indexOf(docs[0].steam_id) > -1)
+          { 
+            console.log("HAS VOTED")
+            docs["modified"] = "true"
+            res.render('index', {results : docs});
+          }
+          else
+          {
+            console.log("HAS NOT VOTED")
+            res.render('index', {results : docs});
+          }
+          } 
+          else
+          {
+            res.render('index', {results : docs});
+          }
+          })
+
+          console.log(docs)
+          
           })
 
           
@@ -140,7 +184,36 @@ app.get('/', function (req, res) {
                             var nickname = body2["response"]["players"][0]["personaname"];
                             docs2[0]["nickname"] = nickname;
                             docs2[0]["avatarfull"] = avatar;
-                            res.render('index', {results : docs2});
+
+                              var voterIp = req.header('x-forwarded-for') || req.connection.remoteAddress;
+
+
+                              Voter.find({ip: voterIp}, function (err, docs3) { 
+
+                              if(docs3.length > 0)
+                              {
+                              //WAIT CHECK FIRST IF IP IS IN THE LIST. IF IT IS DO NOTHING IF IT ISNT, UPDATE RATING
+
+                              votesList = docs3[0].votes
+
+          if(votesList.indexOf(docs3[0].input) > -1)
+          { 
+            console.log("HAS VOTED")
+            docs2["modified"] = "true"
+            res.render('index', {results : docs2});
+          }
+          else
+          {
+            console.log("HAS NOT VOTED")
+            res.render('index', {results : docs2});
+          }
+                              } 
+                              else
+                              {
+                                res.render('index', {results : docs2});
+                              }
+                              })
+
                             })
 
                         }
@@ -152,8 +225,36 @@ app.get('/', function (req, res) {
                             json: true
                             }, function (error, response, body) {
 
+
+                              var voterIp = req.header('x-forwarded-for') || req.connection.remoteAddress;
+
+
+                              Voter.find({ip: voterIp}, function (err, docs2) { 
+
+                              if(docs2.length > 0)
+                              {
+                              //WAIT CHECK FIRST IF IP IS IN THE LIST. IF IT IS DO NOTHING IF IT ISNT, UPDATE RATING
+
+                              votesList = docs2[0].votes
+
+          if(votesList.indexOf(docs2[0].input) > -1)
+          { 
+            console.log("HAS VOTED")
+            docs["modified"] = "true"
+            res.render('index', {results : docs});
+          }
+          else
+          {
+            console.log("HAS NOT VOTED")
+            res.render('index', {results : docs});
+          }
+                              } 
+                              else
+                              {
+                                res.render('index', {results : docs});
+                              }
+                              })
                             // console.log(body);
-                            res.render('index', {results : body});
                             })
                             // res.render('index', {results : profInfo});
                         }
@@ -192,7 +293,36 @@ app.get('/', function (req, res) {
                             var nickname = body2["response"]["players"][0]["personaname"];
                             docs2[0]["nickname"] = nickname;
                             docs2[0]["avatarfull"] = avatar;
-                            res.render('index', {results : docs2});
+
+                              var voterIp = req.header('x-forwarded-for') || req.connection.remoteAddress;
+
+
+                              Voter.find({ip: voterIp}, function (err, docs3) { 
+
+                              if(docs3.length > 0)
+                              {
+                              //WAIT CHECK FIRST IF IP IS IN THE LIST. IF IT IS DO NOTHING IF IT ISNT, UPDATE RATING
+
+                              votesList = docs3[0].votes
+
+                            if(votesList.indexOf(proflink) > -1)
+                            { 
+                              console.log("HAS VOTED")
+                              docs2["modified"] = "true"
+                              res.render('index', {results : docs2});
+                            }
+                            else
+                            {
+                              console.log("HAS NOT VOTED")
+                              res.render('index', {results : docs2});
+                            }
+                              } 
+                              else
+                              {
+                                res.render('index', {results : docs2});
+                              }
+                              })
+
                             })
 
                         }
@@ -204,8 +334,35 @@ app.get('/', function (req, res) {
                             json: true
                             }, function (error, response, body) {
 
+                            var voterIp = req.header('x-forwarded-for') || req.connection.remoteAddress;
+
+
+                            Voter.find({ip: voterIp}, function (err, docs2) { 
+
+                            if(docs2.length > 0)
+                            {
+                            //WAIT CHECK FIRST IF IP IS IN THE LIST. IF IT IS DO NOTHING IF IT ISNT, UPDATE RATING
+
+                            votesList = docs2[0].votes
+
+                            if(votesList.indexOf(proflink) > -1)
+                            { 
+                              console.log("HAS VOTED")
+                              body["modified"] = "true"
+                              res.render('index', {results : body});
+                            }
+                            else
+                            {
+                              console.log("HAS NOT VOTED")
+                              res.render('index', {results : body});
+                            }
+                            } 
+                            else
+                            {
+                              res.render('index', {results : body});
+                            }
+                            })
                             // console.log(body);
-                            res.render('index', {results : body});
                             })
                             // res.render('index', {results : profInfo});
                         }
@@ -218,6 +375,23 @@ app.get('/', function (req, res) {
                     } 
                     else
                     {
+                        // var voterIp = req.header('x-forwarded-for') || req.connection.remoteAddress;
+
+
+                        // Voter.find({ip: voterIp}, function (err, docs2) { 
+
+                        // if(docs2.length > 0)
+                        // {
+                        // //WAIT CHECK FIRST IF IP IS IN THE LIST. IF IT IS DO NOTHING IF IT ISNT, UPDATE RATING
+
+                        // votesList = docs2[0].votes
+
+                        // if(votesList.indexOf(docs[0].steam_id) > -1)
+                        // { 
+                        // docs["modified"] = "true"
+                        // }
+                        // } 
+                        // })
                       res.render('index', {results : body});
                     }
 
@@ -281,6 +455,81 @@ app.get('/', function (req, res) {
    }
    else if((upvote != '') && (typeof upvote !== 'undefined'))
    {
+
+    var voterIp = req.header('x-forwarded-for') || req.connection.remoteAddress;
+
+
+    Voter.find({ip: voterIp}, function (err, docs) { 
+
+    if(docs.length > 0)
+    {
+      //WAIT CHECK FIRST IF IP IS IN THE LIST. IF IT IS DO NOTHING IF IT ISNT, UPDATE RATING
+
+      votesList = docs[0].votes
+
+      if(votesList.indexOf(upvote) > -1)
+      {
+        console.log(voterIp+" exists, and has already voted for "+upvote)
+
+          User.find({steam_id: upvote}, function (err, docs) { 
+
+          if(docs.length > 0)
+          {
+          console.log(docs[0])
+
+          docs["modified"] = "true"
+
+          res.render('index', {results : docs});
+
+          }
+          });
+
+      }
+      else
+      {
+        console.log("Existing Voter, New vote: "+voterIp+" for "+upvote)
+        votesList.push(upvote)
+        Voter.update({ip: voterIp},{votes: votesList}, function(err,affected) { });
+
+
+        User.find({steam_id: upvote}, function (err, docs) { 
+
+        if(docs.length > 0)
+        {
+        console.log(docs[0])
+        var updatedRating = docs[0]["rating"] + 1
+        User.update({steam_id: upvote},{rating: updatedRating}, function(err,affected) {
+
+        });
+
+
+        docs["modified"] = "true"
+        docs[0]["rating"] = updatedRating
+
+        res.render('index', {results : docs});
+
+        }
+        });
+      }
+
+    }
+
+    else
+    {
+      console.log("New Voter, New vote: "+voterIp+" for "+upvote)
+      var newVoter = new Voter({
+
+      ip: voterIp,
+      votes: [upvote]
+
+      })
+
+      newVoter.save(function(er, data) {
+
+      console.log("Voter Saved: ", data);
+
+      });
+
     User.find({steam_id: upvote}, function (err, docs) { 
 
     if(docs.length > 0)
@@ -288,13 +537,24 @@ app.get('/', function (req, res) {
       console.log(docs[0])
       var updatedRating = docs[0]["rating"] + 1
       User.update({steam_id: upvote},{rating: updatedRating}, function(err,affected) {
-      console.log('affected rows %d', affected);
     });
+
+    
+      docs["modified"] = "true"
+      docs[0]["rating"] = updatedRating
 
       res.render('index', {results : docs});
 
+      console.log(docs)
+
     }
     });
+
+    }
+
+    })
+
+
 
    }
    else

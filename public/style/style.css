@@ -314,6 +314,21 @@ float:right;
 	cursor: pointer;
 
 }
+.modifiedbox
+{
+	/*margin-right: 40px;*/
+	margin-top: 55px;
+	margin-left:10px;
+	/*border: 1px solid white;*/
+	float:right;
+	width:70px;
+	height: 70px;
+	line-height: 70px;
+	font-size: 90;
+	text-align: center;
+	color: red;
+
+}
 .confirmbox
 {
 	/*margin-right: 40px;*/

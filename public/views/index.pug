@@ -17,7 +17,7 @@ html
 
 			center
 				form(method='get',action='/')
-					input(id='player_searchbox', type='text', placeholder='Name / Profile Link' name='player' autocomplete='off')
+					input(id='player_searchbox', type='text', placeholder='Profile link / Name' name='player' autocomplete='off')
 					//- input(type='submit', id='search_button', onclick='searchPlayer('+JSON.stringify(players)+', player_searchbox.value)' value='Search')
 					input(type='submit', id='search_button')
 		br
@@ -83,7 +83,10 @@ html
 									b #{player.steam_id}
 							form(method='get',action='/' id='upvote_form')
 								input(type='hidden', name='upvote' value=player.steam_id)
-							.votebox +
+							if(results.modified)
+								.modifiedbox &#10004;
+							else
+								.votebox +
 							.confirmbox &#10004;
 							.rating #{player.rating}
 
