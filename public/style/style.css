@@ -5,7 +5,7 @@ body
 	/*background-color: #f6f6f6;*/
 	font-family: arial;
 	margin:auto;
-	height: 100%;
+
 }
 #close
 {
@@ -127,7 +127,7 @@ float:right;
 	width: 400px;
 	font-size: 18;
 }
-#jabroni_list_left
+#player_list_left
 {
 	margin-top: 20px;
 	padding:5px;
@@ -136,13 +136,40 @@ float:right;
 	height: 220px;
 	/*border:1px solid white;*/
 }
-#jabroni_list_right
+#player_list_right
 {
 	margin-top: 20px;
 	padding:5px;
 	width:435px;
 	height: 220px;
 	float:right;
+	/*border:1px solid white;*/
+}
+#jabroni_list_left
+{
+	margin-top: 20px;
+	padding:5px;
+	width:70px;
+	float:left;
+	height: 220px;
+	/*border:1px solid white;*/
+}
+#jabroni_list_right
+{
+	margin-top: 20px;
+	padding:5px;
+	width:70px;
+	height: 220px;
+	float:left;
+	/*border:1px solid white;*/
+}
+#jabroni_list_far_right
+{
+	margin-top: 20px;
+	padding:5px;
+	width:70px;
+	height: 220px;
+	float:left;
 	/*border:1px solid white;*/
 }
 #add_form_wrapper
@@ -225,6 +252,7 @@ float:right;
 	line-height: 75px;
 
 }
+
 .mini_player_info
 {
 
@@ -255,6 +283,20 @@ float:right;
 	float:left;
 }
 .mini_avatar
+{
+	width:64px;
+	height:64px;
+	border: 2px solid #53A4C4;
+	float:left;
+}
+.jabrono_avatar_ingame
+{
+	width:64px;
+	height:64px;
+	border: 2px solid #82A737;
+	float:left;
+}
+.jabrono_avatar
 {
 	width:64px;
 	height:64px;
@@ -477,7 +519,7 @@ input.placeholder {
     color: white;
     border-top: 1px solid #363636;
     border-bottom: 1px solid #202020;
-    background: #53A4C4;
+    background: #324158;
     background: linear-gradient(top, #383838 0%, #262626 100%);
     border-radius: 2px 2px 0 0;
     box-shadow: 0 1px 2px rgba(0,0,0,0.3);
@@ -496,115 +538,72 @@ input.placeholder {
 }
 #home h3::before {left: 0;}
 #home h3::after {right: 0;}
-
-
-/*#wrapper
+#jabronos
 {
-	position:relative;
-	width:50%;
-	font-size: 1.53em;
-	padding: 6px, 20px, 6px, 50px;
-	margin: 10px, 10px, 10px, -25px;
-	background-color: #53a4c4;
-	text-shadow: 0px, 1px, 2px, #3B3B3B;
-	-webkit-box-shadow: 0px, 2px, 4px, #888;
-	-moz-box-shadow: 0px, 2px, 4px, #888;
-	box-shadow: 0px, 2px, 4px, #888;
-
+	float:left;
+	height: 290px;
+	padding: 10px;
+	background-color: #3B3B3B;
+	/*border-radius: 5px;*/
+	/* box-shadow */
+/*	max-height: 800px;
+	overflow-y: scroll;	*/
+	color:white;
+	box-shadow: 0px 0px 5px black;
+	/*border: 1px solid white;*/
+	width:250px;
 }
-#wrapper:after
-{
-	content:'';
-	position: absolute;
-	width:0;
-	height: 0;
-	left: 0px;
-	top:100%;
-	border-width: 5px;
-	border-style: solid;
-	border-color: #242424 transparent transparent transparent;  
-}*/
-
-
-
-
-form-signin{
-    max-width: 330px;
-    padding: 15px;
-    margin: 0 auto;
-}
-.form-signin .form-signin-heading, .form-signin .checkbox{
-    margin-bottom: 10px;
-}
-.form-signin .checkbox{
+#jabronos h3 {
+	text-align: center;
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    float:left;
+    width: 210px;
+    margin: 0;
+    padding: 5px 10px;
+    position: relative;
+    left: -19px;
+    top: 8px;
+    color: white;
+    border-top: 1px solid #363636;
+    border-bottom: 1px solid #202020;
+    background: #324158;
+    /*background: linear-gradient(#334259, #262A35 );*/
+    /*background: linear-gradient(top, #383838 0%, #262626 100%);*/
+    /*border-radius: 2px 2px 0 0;*/
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
     font-weight: normal;
 }
-.form-signin .form-control{
-    position: relative;
-    font-size: 16px;
-    height: auto;
-    padding: 10px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-.form-signin .form-control:focus{
-    z-index: 2;
-}
-.form-signin input[type="text"]{
-    margin-bottom: -1px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-}
-.form-signin input[type="password"]{
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-}
-.form-signin input[type="password"].nomargin{
-	margin-bottom: 0px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-}
-.account-wall{
-    margin-top: 20px;
-    padding: 40px 0px 20px 0px;
-    background-color: #f7f7f7;
-    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-}
-.signup-wall{
-	margin-top: 20px;
-    padding: 20px 0px 20px 0px;
-    background-color: #f7f7f7;
-    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);	
-}
-.login-title{
-    color: #555;
-    font-size: 18px;
-    font-weight: 400;
+#jabronos h3::before,
+#jabronos h3::after {
+    content: '';
     display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    bottom: -11px;
+    z-index: -10;
+    border: 5px solid;
+    border-color: #242424 transparent transparent transparent;    
 }
-.profile-img{
-    width: 96px;
-    height: 96px;
-    margin: 0 auto 10px;
-    display: block;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-}
-.new-account{
-    display: block;
-    margin-top: 10px;
-}
-h1.error-message{
-    color: red;
-}
-ul.user-details{
-    list-style: none;
-}
+#jabronos h3::before {left: 0;}
+#jabronos h3::after {right: 0;}
 
+#body_block
+{
+	height: 310px;
+	margin-right:-19px;
+	background-color: #3B3B3B;
+	/*border-radius: 5px;*/
+	/* box-shadow */
+/*	max-height: 800px;
+	overflow-y: scroll;	*/
+	color:white;
+	box-shadow: 0px 0px 5px black;
+
+	width:634px;
+	/*border:1px solid white;*/
+	float:right;
+
+}

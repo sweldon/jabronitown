@@ -617,7 +617,19 @@ app.get('/', function (req, res) {
             completed_request++;
             
             if (completed_request == docs2.length) {
-               res.render('index', { recentJabronies: docs2 , ingameList: ingame});
+
+              User.find({
+              'steam_id': { $in: [ "76561198002041609", "76561197998181418","76561198000768061", "76561198028841483", "76561197993762951", "76561197974866126", "76561198000586070"
+              ]}
+              }, function (err, jabronos) {
+                
+                console.log(jabronos.length)
+                res.render('index', { recentJabronies: docs2 , ingameList: ingame, jabronoList: jabronos});
+
+              })
+
+
+               
             }
               // ingame.push(body["response"]["players"][0]["personaname"])
 
