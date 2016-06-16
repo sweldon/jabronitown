@@ -196,17 +196,17 @@ app.get('/', function (req, res) {
 
                               votesList = docs3[0].votes
 
-          if(votesList.indexOf(docs3[0].input) > -1)
-          { 
-            console.log("HAS VOTED")
-            docs2["modified"] = "true"
-            res.render('index', {results : docs2});
-          }
-          else
-          {
-            console.log("HAS NOT VOTED")
-            res.render('index', {results : docs2});
-          }
+                              if(votesList.indexOf(docs3[0].input) > -1)
+                              { 
+                                console.log("HAS VOTED")
+                                docs2["modified"] = "true"
+                                res.render('index', {results : docs2});
+                              }
+                              else
+                              {
+                                console.log("HAS NOT VOTED")
+                                res.render('index', {results : docs2});
+                              }
                               } 
                               else
                               {
@@ -237,21 +237,21 @@ app.get('/', function (req, res) {
 
                               votesList = docs2[0].votes
 
-          if(votesList.indexOf(docs2[0].input) > -1)
-          { 
-            console.log("HAS VOTED")
-            docs["modified"] = "true"
-            res.render('index', {results : docs});
-          }
-          else
-          {
-            console.log("HAS NOT VOTED")
-            res.render('index', {results : docs});
-          }
+                              if(votesList.indexOf(docs2[0].input) > -1)
+                              { 
+                              console.log("HAS VOTED")
+                              docs["modified"] = "true"
+                              res.render('index', {results : body});
+                              }
+                              else
+                              {
+                              console.log("HAS NOT VOTED")
+                              res.render('index', {results : body});
+                              }
                               } 
                               else
                               {
-                                res.render('index', {results : docs});
+                              res.render('index', {results : body});
                               }
                               })
                             // console.log(body);
