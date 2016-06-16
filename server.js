@@ -609,10 +609,10 @@ app.get('/', function (req, res) {
           }, function (error, response, body) {
 
 
-            if("gameextrainfo" in body["response"]["players"][0])
-            {
-              ingame.push(body["response"]["players"][0]["personaname"]);
-            }
+            // if("gameextrainfo" in body["response"]["players"][0])
+            // {
+            //   ingame.push(body["response"]["players"][0]["personaname"]);
+            // }
 
             completed_request++;
             
