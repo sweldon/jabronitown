@@ -16,13 +16,13 @@ var request = require("request")
 // Connect to db
 mongoose.connect('mongodb://admin:adminpass@ds011734.mlab.com:11734/heroku_xc6qf81p', function (error) {
     if (error) {
-        console.log(error);
+        //console.log(error);
     }
     });
 
 // mongoose.connect('mongodb://localhost:27017/blacklist', function (error) {
 //     if (error) {
-//         console.log(error);
+//         //console.log(error);
 //     }
 //     });
 
@@ -56,7 +56,7 @@ app.get('/', function (req, res) {
    var myname = req.param('player');
    var add_player = req.param('add_player')
    var upvote = req.param('upvote')
-   // if (typeof myname !== 'undefined') {console.log(myname)};
+   // if (typeof myname !== 'undefined') {//console.log(myname)};
    if((myname != '') && (typeof myname !== 'undefined'))
    {
 
@@ -67,7 +67,7 @@ app.get('/', function (req, res) {
 
 
       var steam = myname.replace( /^\D+/g, '').replace(/^\/|\/$/g, '');
-      console.log(steam);
+      //console.log(steam);
       // query("steam_id", steam);
 
       User.find({steam_id: steam}, function (err, docs) {
@@ -82,9 +82,9 @@ app.get('/', function (req, res) {
       var trimmed = myname.replace(/^\/|\/$/g, '');
       var chunked = trimmed.split('/');
       var id = chunked[chunked.length -1];
-      console.log("GOOD STUFF"+id)
+      //console.log("GOOD STUFF"+id)
       // name = id;
-      // console.log("by id")
+      // //console.log("by id")
   
           User.find({name: id}, function (err, docs) {
         // res.json(docs[0].name);
@@ -142,13 +142,13 @@ app.get('/', function (req, res) {
 
           if(votesList.indexOf(docs[0].steam_id) > -1)
           { 
-            console.log("HAS VOTED")
+            //console.log("HAS VOTED")
             docs["modified"] = "true"
             res.render('index', {results : docs});
           }
           else
           {
-            console.log("HAS NOT VOTED")
+            //console.log("HAS NOT VOTED")
             res.render('index', {results : docs});
           }
           } 
@@ -158,7 +158,7 @@ app.get('/', function (req, res) {
           }
           })
 
-          console.log(docs)
+          //console.log(docs)
           
           })
 
@@ -198,13 +198,13 @@ app.get('/', function (req, res) {
 
                               if(votesList.indexOf(docs3[0].input) > -1)
                               { 
-                                console.log("HAS VOTED")
+                                //console.log("HAS VOTED")
                                 docs2["modified"] = "true"
                                 res.render('index', {results : docs2});
                               }
                               else
                               {
-                                console.log("HAS NOT VOTED")
+                                //console.log("HAS NOT VOTED")
                                 res.render('index', {results : docs2});
                               }
                               } 
@@ -239,13 +239,13 @@ app.get('/', function (req, res) {
 
                               if(votesList.indexOf(docs2[0].input) > -1)
                               { 
-                              console.log("HAS VOTED")
+                              //console.log("HAS VOTED")
                               docs["modified"] = "true"
                               res.render('index', {results : body});
                               }
                               else
                               {
-                              console.log("HAS NOT VOTED")
+                              //console.log("HAS NOT VOTED")
                               res.render('index', {results : body});
                               }
                               } 
@@ -254,7 +254,7 @@ app.get('/', function (req, res) {
                               res.render('index', {results : body});
                               }
                               })
-                            // console.log(body);
+                            // //console.log(body);
                             })
                             // res.render('index', {results : profInfo});
                         }
@@ -267,7 +267,7 @@ app.get('/', function (req, res) {
           }
           else {
           var steamID = "http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=9E9FA805315870376BABB490E2B92C93&vanityurl="+input
-            console.log(steamID)
+            //console.log(steamID)
             request({
                 url: steamID,
                 json: true
@@ -307,13 +307,13 @@ app.get('/', function (req, res) {
 
                             if(votesList.indexOf(proflink) > -1)
                             { 
-                              console.log("HAS VOTED")
+                              //console.log("HAS VOTED")
                               docs2["modified"] = "true"
                               res.render('index', {results : docs2});
                             }
                             else
                             {
-                              console.log("HAS NOT VOTED")
+                              //console.log("HAS NOT VOTED")
                               res.render('index', {results : docs2});
                             }
                               } 
@@ -347,13 +347,13 @@ app.get('/', function (req, res) {
 
                             if(votesList.indexOf(proflink) > -1)
                             { 
-                              console.log("HAS VOTED")
+                              //console.log("HAS VOTED")
                               body["modified"] = "true"
                               res.render('index', {results : body});
                             }
                             else
                             {
-                              console.log("HAS NOT VOTED")
+                              //console.log("HAS NOT VOTED")
                               res.render('index', {results : body});
                             }
                             } 
@@ -362,7 +362,7 @@ app.get('/', function (req, res) {
                               res.render('index', {results : body});
                             }
                             })
-                            // console.log(body);
+                            // //console.log(body);
                             })
                             // res.render('index', {results : profInfo});
                         }
@@ -434,7 +434,7 @@ app.get('/', function (req, res) {
 
     newUser.save(function(er, data) {
 
-    console.log("Saved: ", data);
+    //console.log("Saved: ", data);
 
     });
 
@@ -459,7 +459,7 @@ app.get('/', function (req, res) {
 
         newVoter.save(function(er, data) {
 
-        console.log("Voter Saved: ", data);
+        //console.log("Voter Saved: ", data);
 
         });
 
@@ -467,13 +467,13 @@ app.get('/', function (req, res) {
 
   })
 
-    console.log(body2);
+    //console.log(body2);
     res.render('index', {add_results : body2});
 
     }
     else
     {
-      console.log("Already added, doing nothing.")
+      //console.log("Already added, doing nothing.")
       // res.render('index');
       res.render('index', {add_results : body2});
     }
@@ -499,13 +499,13 @@ app.get('/', function (req, res) {
 
       if(votesList.indexOf(upvote) > -1)
       {
-        console.log(voterIp+" exists, and has already voted for "+upvote)
+        //console.log(voterIp+" exists, and has already voted for "+upvote)
 
           User.find({steam_id: upvote}, function (err, docs) { 
 
           if(docs.length > 0)
           {
-          console.log(docs[0])
+          //console.log(docs[0])
 
           docs["modified"] = "true"
 
@@ -517,7 +517,7 @@ app.get('/', function (req, res) {
       }
       else
       {
-        console.log("Existing Voter, New vote: "+voterIp+" for "+upvote)
+        //console.log("Existing Voter, New vote: "+voterIp+" for "+upvote)
         votesList.push(upvote)
         Voter.update({ip: voterIp},{votes: votesList}, function(err,affected) { });
 
@@ -526,7 +526,7 @@ app.get('/', function (req, res) {
 
         if(docs.length > 0)
         {
-        console.log(docs[0])
+        //console.log(docs[0])
         var updatedRating = docs[0]["rating"] + 1
         User.update({steam_id: upvote},{rating: updatedRating}, function(err,affected) {
 
@@ -546,7 +546,7 @@ app.get('/', function (req, res) {
 
     else
     {
-      console.log("New Voter, New vote: "+voterIp+" for "+upvote)
+      //console.log("New Voter, New vote: "+voterIp+" for "+upvote)
       var newVoter = new Voter({
 
       ip: voterIp,
@@ -556,7 +556,7 @@ app.get('/', function (req, res) {
 
       newVoter.save(function(er, data) {
 
-      console.log("Voter Saved: ", data);
+      //console.log("Voter Saved: ", data);
 
       });
 
@@ -564,7 +564,7 @@ app.get('/', function (req, res) {
 
     if(docs.length > 0)
     {
-      console.log(docs[0])
+      //console.log(docs[0])
       var updatedRating = docs[0]["rating"] + 1
       User.update({steam_id: upvote},{rating: updatedRating}, function(err,affected) {
     });
@@ -575,7 +575,7 @@ app.get('/', function (req, res) {
 
       res.render('index', {results : docs});
 
-      console.log(docs)
+      //console.log(docs)
 
     }
     });
@@ -609,7 +609,7 @@ app.get('/', function (req, res) {
           }, function (error, response, body) {
 
 
-            if(body["response"]["players"][0]["gameextrainfo"])
+            if("gameextrainfo" in body["response"]["players"][0])
             {
               ingame.push(body["response"]["players"][0]["personaname"]);
             }
@@ -623,7 +623,7 @@ app.get('/', function (req, res) {
               ]}
               }, function (err, jabronos) {
                 
-                console.log(jabronos.length)
+                //console.log(jabronos.length)
                 res.render('index', { recentJabronies: docs2 , ingameList: ingame, jabronoList: jabronos});
 
               })
@@ -633,7 +633,7 @@ app.get('/', function (req, res) {
             }
               // ingame.push(body["response"]["players"][0]["personaname"])
 
-              // console.log(ingame);
+              // //console.log(ingame);
             
           })
 
@@ -642,8 +642,8 @@ app.get('/', function (req, res) {
           }
          
         
-        // console.log(online)
-          // console.log(id)
+        // //console.log(online)
+          // //console.log(id)
 
 
         
@@ -661,7 +661,7 @@ app.get('/', function (req, res) {
       //   json: true
       //   }, function (error, response, body) {
 
-      //   // console.log(body);
+      //   // //console.log(body);
       //   res.render('index', {resultsa : body});
       //   })
 
@@ -685,6 +685,6 @@ app.get('/', function (req, res) {
 // Server
 var server = app.listen(app.get('port'), function() {
   var port = server.address().port;
-  console.log('Server listening on port: ' + port);
+  //console.log('Server listening on port: ' + port);
 });
 
