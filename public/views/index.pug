@@ -200,26 +200,32 @@ html
 						each val, index in jabronoList
 							if( (index > 2) && (index < 6))
 								.mini_player_summary
-									if(ingameList.indexOf(val.name) > -1)
-										.jabrono_avatar_ingame
-											a(href='/?player='+val.name)
-												img(class='avatar_img', src=''+val.avatarmedium)
-									else
-										.jabrono_avatar
-											a(href='/?player='+val.name)
-												img(class='avatar_img', src=''+val.avatarmedium)
+									//- if(ingameList.indexOf(val.name) > -1)
+									//- 	.jabrono_avatar_ingame
+									//- 		a(href='/?player='+val.name)
+									//- 			img(class='avatar_img', src=''+val.avatarmedium)
+									//- else
+									//- 	.jabrono_avatar
+									//- 		a(href='/?player='+val.name)
+									//- 			img(class='avatar_img', src=''+val.avatarmedium)
+									.jabrono_avatar
+										a(href='/?player='+val.name)
+											img(class='avatar_img', src=''+val.avatarmedium)
 					#jabroni_list_far_right
 						each val, index in jabronoList
 							if(index > 5)
 								.mini_player_summary
-									if(ingameList.indexOf(val.name) > -1)
-										.jabrono_avatar_ingame
-											a(href='/?player='+val.name)
-												img(class='avatar_img', src=''+val.avatarmedium)
-									else
-										.jabrono_avatar
-											a(href='/?player='+val.name)
-												img(class='avatar_img', src=''+val.avatarmedium)
+									//- if(ingameList.indexOf(val.name) > -1)
+									//- 	.jabrono_avatar_ingame
+									//- 		a(href='/?player='+val.name)
+									//- 			img(class='avatar_img', src=''+val.avatarmedium)
+									//- else
+									//- 	.jabrono_avatar
+									//- 		a(href='/?player='+val.name)
+									//- 			img(class='avatar_img', src=''+val.avatarmedium)
+									.jabrono_avatar
+										a(href='/?player='+val.name)
+											img(class='avatar_img', src=''+val.avatarmedium)
 									//- a(id='homelink' href='/?player='+val.name)
 									//- 	.mini_player_info=val.name
 				#body_block
